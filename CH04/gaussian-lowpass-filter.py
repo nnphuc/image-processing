@@ -15,12 +15,10 @@ img = skimage.img_as_float(img)
 fft = np.fft.fft2(img)
 fft = np.fft.fftshift(fft)
 
-def createFilter(H,W,r,D0=80):
+def createFilter(H,W,D0):
     def D(y,x):
-        d = np.sqrt( (y-H/2)**2+(x-W/2)**2)
-        t = np.exp(-d**2/D0**2)
-        t[d>r]=0
-        
+        d2 =  (y-H/2)**2+(x-W/2)**2
+        t = np.exp(-d2/(2*D0**2))
         return t
     return np.fromfunction(D,(H,W))
 

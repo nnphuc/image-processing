@@ -19,7 +19,6 @@ def createFilter(H,W,D0,n=2):
     def D(y,x):
         d = np.sqrt((y-H/2)**2+(x-W/2)**2)
         h = 1/(1+(d/D0)**(2*n))
-        h[d>D0]=0
         return h
     return np.fromfunction(D,(H,W))
 
